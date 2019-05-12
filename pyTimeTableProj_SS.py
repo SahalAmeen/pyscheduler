@@ -39,6 +39,15 @@ CHANGELOG
 10052019
 * Bug fixes.
 
+11052019
+* Bug fixes
+* Added MANUAL TimeTable editor through CLI
+
+12052019
+* Added file i/o operations in the *.brain file in the directory to prevent data loss
+* Added exit option by 0 class enter on input option in __init__() function
+* Added FileSystem Engine to read existing *.brain file changes and append to existing RAM (2158)
+
 # * TODO add result dict conflict checker
 *********************************************
 -------------------------------------------------------------------------------------
@@ -52,6 +61,7 @@ from itertools import permutations
 # If not exist, python3 will automatically create one
 brain = open('saved_db.brain', "a+")
 brain.close()
+# for safety
 finished = []
 paramNum = 0
 subjects = {"xii_and_xi": ["M/C", "English", "Physics", "Chemistry", "B/C"]}
