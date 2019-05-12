@@ -39,15 +39,6 @@ CHANGELOG
 10052019
 * Bug fixes.
 
-11052019
-* Bug fixes
-* Added MANUAL TimeTable editor through CLI
-
-12052019
-* Added file i/o operations in the *.brain file in the directory to prevent data loss
-* Added exit option by 0 class enter on input option in __init__() function
-* Added FileSystem Engine to read existing *.brain file changes and append to existing RAM (2158)
-
 # * TODO add result dict conflict checker
 *********************************************
 -------------------------------------------------------------------------------------
