@@ -146,7 +146,7 @@ def blckPeriod(result, paramNum, paramtype):
                                                         result[str(paramNum) + paramtype][count:count + 1] + \
                                                         result[str(paramNum) + paramtype][count:]
                     print(result[str(paramNum) + paramtype])
-                    count += 1
+                    count += 2  # Ignore added new entry
                     print(count)
                 else:
                     count += 1
