@@ -48,6 +48,10 @@ CHANGELOG
 * Added exit option by 0 class enter on input option in __init__() function
 * Added FileSystem Engine to read existing *.brain file changes and append to existing RAM (2158)
 
+17052019
+* Added MySQL support
+* Handling most Exceptions
+
 # * TODO add result dict conflict checker
 *********************************************
 -------------------------------------------------------------------------------------
@@ -55,7 +59,38 @@ CHANGELOG
 
 # import
 from itertools import permutations
+from itertools import permutations, product
+import mysql.connector as conn
+import os
 
+currDir = os.getcwd()
+print(currDir)
+try:
+
+    mydb = conn.connect(
+        user="newuser",
+        passwd="password",
+        database="my_db"
+    )
+    print("YUM")
+    myCursor = mydb.cursor()
+
+
+except:
+    mydb = conn.connect(
+        user="newuser",
+        passwd="password"
+
+    )
+    print("YAY")
+    myCursor = mydb.cursor()
+
+myCursor.execute("USE my_db")
+
+print("Welcome o my first SQL program for Python integrated")
+myCursor.execute("SELECT * FROM timetable_tchr")
+for i in myCursor:
+    print(i)
 # appending or creating the file saved_db.brain
 # a necessary brain declaration to prevent Exceptions of FileErrors.
 # If not exist, python3 will automatically create one
@@ -244,7 +279,15 @@ def manipulate_timetable(param, param0, paramtype=""):  # usage : manipulate_tim
 def __init__():
     print("""PYTHON TIME TABLE CREATION ALGORITHM""")
     print("Enter 0 if you wish to quit")
-    runClass = int(input("Enter the class for time table manipulation first:>>> "))
+    try:
+        runClass = int(input("Enter the class for time table manipulation first:>>> "))
+    except ValueError:
+        print("Invalid Input! Quitting")
+        return 0
+    except TypeError:
+        print("Invalid Input! Quitting")
+        return 0
+
     if (runClass == 0):
         return False
     if (runClass == 11 or runClass == 12):
@@ -253,8 +296,12 @@ def __init__():
             paramtype = "Science"
         elif (paramtype == "C"):
             paramtype = "Commerce"
+            print("Commerce group is not initialized yet, please try again later!")
+            return 0
         elif (paramtype == "H"):
             paramtype = "Humanities"
+            print("Humanities group is not initialized yet, please try again later!")
+            return 0
         else:
             print("Error! invalid input!")
 
@@ -262,18 +309,25 @@ def __init__():
         paramNum = 12
 
     else:
+        print("The class you entered ", runClass, " is under development only. Please come back soon!")
+        return 0
+
         param = "sth"
         # TODO
         paramNum = 0
         paramtype = ""
 
-    if (runClass == 12):
+    if (runClass == 12 or runClass == 11):
         resp = input("Do you want to create the time table for class :" + str(runClass)
                      + " manually? >>>")
-        if (resp == "y"):
+        if (resp == "y" or resp == "Y" or resp == "1" or resp == "ok" or resp == "yes" or resp == "YES"):
             manipulate_manual(paramNum, paramtype)
         else:
             manipulate_timetable(param, paramNum, paramtype)
+    else:
+        print("The class :", runClass, "is not yet implemented!")
+        # TODO
+        return 0
 
 
 __init__()
