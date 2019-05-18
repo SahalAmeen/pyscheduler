@@ -103,16 +103,18 @@ def engine(class_, opt=None):
             tempList.append(Tem)
             count += 1
             count2 += 1
-        part = tempList[randint(0, len(tempList) - 1)]
-        temp0 = list(permutations(part))
+        """
+        part0 = tempList[randint(0, len(tempList) - 1)]
+        temp0 = list(permutations(part0))
+        """
         final = []
-        for i in range(0, 6):
-            final.append(temp0[randint(0, len(temp0))])
+        for i in range(0, 5):
+            j = list(permutations(tempList[i]))
 
-        print(final)
+            final.append(j[randint(0, len(j) - 1)])
+
+        print(final, sep="\n")
         pass
-
-        tempList = list(permutations(subjectTemp))
 
 
 def decompiler():
