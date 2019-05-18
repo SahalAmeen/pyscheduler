@@ -57,11 +57,9 @@ CHANGELOG
 -------------------------------------------------------------------------------------
 """
 
-# import
-from itertools import permutations
-from itertools import permutations, product
-import mysql.connector as conn
 import os
+from itertools import permutations
+import mysql.connector as conn
 
 currDir = os.getcwd()
 print(currDir)
@@ -91,6 +89,7 @@ print("Welcome o my first SQL program for Python integrated")
 myCursor.execute("SELECT * FROM timetable_tchr")
 for i in myCursor:
     print(i)
+
 # appending or creating the file saved_db.brain
 # a necessary brain declaration to prevent Exceptions of FileErrors.
 # If not exist, python3 will automatically create one
