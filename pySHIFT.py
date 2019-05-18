@@ -83,6 +83,8 @@ def engine(class_, opt=None):
     # 7*6 = 42, 5*6=30 + 5 = 35 + 5 = # # # 40 + 1games + 1Rnd subject
     # TODO CHECK conflict
     tempList = []
+    count = randint(0, 4)
+    count2 = randint(1, 5)
     if (opt == None):
         subjectTemp = subjects[class_]
         pass
@@ -91,8 +93,25 @@ def engine(class_, opt=None):
         pass
     if (len(subjectTemp) == 5):
         for i in range(len(subjectTemp)):
-            rand =
-            +class_[randint(0, 4):]
+            if (count == 5):
+                count = 0
+            if (count2 == 6):
+                count2 = 1
+
+            Tem = subjectTemp + subjectTemp[count:count + 1] + subjectTemp[count2 - 1:count2]
+            print(Tem)
+            tempList.append(Tem)
+            count += 1
+            count2 += 1
+        part = tempList[randint(0, len(tempList) - 1)]
+        temp0 = list(permutations(part))
+        final = []
+        for i in range(0, 6):
+            final.append(temp0[randint(0, len(temp0))])
+
+        print(final)
+        pass
+
         tempList = list(permutations(subjectTemp))
 
 
