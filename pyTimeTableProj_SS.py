@@ -160,7 +160,10 @@ def manipulate_manual(paramNum, paramtype):
             print('Retrying...')
             manipulate_manual(paramNum, paramtype)
         print("Exiting manual timetable builder CLI")
-
+        # finally execute the following statements
+        # append to mysql db
+        print(result)
+        myCursor.execute("INSERT INTO TABLE ")
         __init__()
 
 
@@ -187,6 +190,11 @@ def blckPeriod(result, paramNum, paramtype):
 
     else:
         result[str(paramNum) + paramtype] = tempBlock
+
+    # finally execute the following statements
+    # append to mysql db
+    print(result)
+
 
 
 # PARSE PART
@@ -272,7 +280,8 @@ def manipulate_timetable(param, param0, paramtype=""):  # usage : manipulate_tim
         blckPeriod(result, paramNum, paramtype)
     else:
         # TODO not yet
-        print("INFO [1] # TODO ")
+        print("INFO [050246] # TODO ")
+
 
 
 def __init__():
